@@ -4,12 +4,13 @@ import sql from "mssql";
 // Konfigurasi koneksi SQL Server
 const config = {
   user: "sa",
-  password: "myPass123!",
-  server: "172.10.10.47",
+  password: "cpedp",
+  server: "192.168.1.218", // Hapus 'http://'
+  port: 1433, // Sertakan port jika berbeda dari default
   database: "absensi",
   options: {
-    encrypt: true, // Untuk koneksi SSL
-    trustServerCertificate: true, // Sesuaikan dengan kebutuhan
+    encrypt: false, // Untuk koneksi SSL
+    trustServerCertificate: false, // Sesuaikan dengan kebutuhan
   },
 };
 
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
   let pool;
   try {
     // Ambil data dari request body
-    const { userId, checktime } = await request.json();
+    const { userId, checktime,sensorId,sn } = await request.json();
 
     // Validasi data
     if (!userId || !checktime) {
@@ -62,8 +63,10 @@ export async function POST(request: Request) {
       .request()
       .input("userId", sql.Int, userId)
       .input("checktime", sql.DateTime, new Date(checktime))
+      .input("sensorId", sql.Int, sensorId)
+      .input("sn", sql.VarChar, sn)
       .query(
-        "INSERT INTO CHECKINOUT (userId, checktime) VALUES (@userId, @checktime)"
+        "INSERT INTO CHECKINOUT (userId, checktime,sensorId,sn) VALUES (@userId, @checktime,@sensorid,@sn)"
       );
 
     // Kirim respons sukses
