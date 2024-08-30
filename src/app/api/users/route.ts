@@ -5,7 +5,7 @@ import sql from "mssql";
 const config = {
   user: "sa",
   password: "myPass123!",
-  server: "localhost",
+  server: "172.10.10.47",
   database: "absensi",
   options: {
     encrypt: true, // Untuk koneksi SSL
