@@ -122,20 +122,20 @@ const HomePage: React.FC = () => {
             {error && <p>{error}</p>}
             {submitError && <p style={{ color: "red" }}>{submitError}</p>}
             {submitSuccess && <p style={{ color: "green" }}>{submitSuccess}</p>}
-            <Select>
+            {/* <Select>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select a user" />
               </SelectTrigger>
               <SelectContent>
                 
               {users.map((user) => (
-                <option key={user.USERID} value={user.USERID}>
+                <optio key={user.USERID} value={user.USERID}>
                   {user.Name}
-                </option>
+                </optio>
               ))}
               </SelectContent>
-            </Select>
-            {/* <select
+            </Select> */}
+            <select
               onChange={handleChange}
               defaultValue=""
               className="w-full py-2"
@@ -148,7 +148,7 @@ const HomePage: React.FC = () => {
                   {user.Name}
                 </option>
               ))}
-            </select> */}
+            </select>
             {selectedUser && (
               <div className="gap-2">
                 <h3>Selected User</h3>

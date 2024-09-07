@@ -5,7 +5,7 @@ import sql from "mssql";
 const config = {
   user: "sa",
   password: "cpedp",
-  server: "192.168.1.218", // Hapus 'http://'
+  server: "192.168.1.217", // Hapus 'http://'
   port: 1433, // Sertakan port jika berbeda dari default
   database: "absensi",
   options: {
