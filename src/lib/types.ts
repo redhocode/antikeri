@@ -2,7 +2,8 @@
 export interface User {
   USERID: number;
   Name: string;
-  SENSORID: number;
-  VERIFCODE: number;
+  SENSORID: string;
+  VERIFCODE: string;
+  
   // Tambahkan properti lainnya jika perlu
 }

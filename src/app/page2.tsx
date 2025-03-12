@@ -38,33 +38,31 @@ const HomePage: React.FC = () => {
   const [dbConnected, setDbConnected] = useState<boolean | null>(null);
   const [password, setPassword] = useState<string>(""); // For storing password input
   const [passwordVerified, setPasswordVerified] = useState<boolean>(false); // To track if the password is correct
-  const [allowedUsers, setAllowedUsers] = useState<User[]>([]); // State for the dynamic users
 
   const sensorId = "1";
   const SN = "A5NS190560046";
+  const allowedUsers: User[] = [
+    {
+      USERID: 8597,
+      Name: "Redho Arifin",
+      SENSORID: sensorId,
+      VERIFCODE: SN,
+    },
+    {
+      USERID: 8378,
+      Name: "User 2",
+      SENSORID: sensorId,
+      VERIFCODE: SN,
+    },
+    {
+      USERID: 7878,
+      Name: "User 3",
+      SENSORID: sensorId,
+      VERIFCODE: SN,
+    },
+  ];
 
   useEffect(() => {
-    // Fetch users from the backend API
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("/api/users"); // Adjust the API path accordingly
-        const users = response.data;
-
-        // Map the fetched users into the required format
-        const formattedUsers = users.map((user: { userid: number , name: string}) => ({
-          USERID: user.userid,
-          Name: user.name,
-          SENSORID: sensorId,
-          VERIFCODE: SN,
-        }));
-        setAllowedUsers(formattedUsers);
-      } catch (error) {
-        toast.error("Failed to fetch users from the server.");
-      }
-    };
-
-    fetchUsers();
-
     const checkDatabaseConnection = async () => {
       setDbLoading(true);
       try {
@@ -115,7 +113,7 @@ const HomePage: React.FC = () => {
         sn: SN,
       });
 
-      setSubmitSuccess("Success");
+      setSubmitSuccess("Check-in/check-out time added successfully.");
       setSubmitError(null);
     } catch (error) {
       setSubmitError("Failed to submit data.");
@@ -127,7 +125,7 @@ const HomePage: React.FC = () => {
 
   const handlePasswordSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const correctPassword = "2027"; // Replace with your desired password
+    const correctPassword = '2027'; 
     if (password === correctPassword) {
       setPasswordVerified(true);
     } else {
