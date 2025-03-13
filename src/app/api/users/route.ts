@@ -1,18 +1,8 @@
 import { NextResponse } from "next/server";
 import sql from "mssql";
+import config from "@/lib/config";
 
-// Konfigurasi koneksi SQL Server
-const config = {
-  user: "sa",
-  password: "myPass123",
-  server: "localhost", // Hapus 'http://'
-  port: 1433, // Sertakan port jika berbeda dari default
-  database: "absensi",
-  options: {
-    encrypt: false, // Untuk koneksi SSL
-    trustServerCertificate: false, // Sesuaikan dengan kebutuhan
-  },
-};
+
 
 //Handler untuk metode GET
 export async function GET() {
